@@ -1,10 +1,25 @@
-import { View } from "react-native"
+import { View,Text,Modal, ActivityIndicator} from "react-native";
+import styles from "../libs/styles";
+import {BlurView} from "expo-blur";
 
-const Modal = () => {
+
+export const ModalComponent = ({loading = false, setLoading}) => {
     return (
-        <View>
-
-        </View>
+        <Modal
+            animationType="fade"
+            transparent={true}
+            visible={loading}
+            onRequestClose={() => {
+            setVisible(!loading);
+            }}>
+            <BlurView 
+             intensity={50} 
+             tint="dark" 
+             style={styles.modalContainer}>
+                <View style={styles.modal}>
+                    <ActivityIndicator size="large" color="#85fcad" />
+                </View>
+            </BlurView>
+        </Modal>
     )
 }
-export default Modal; 

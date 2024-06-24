@@ -2,9 +2,10 @@ import { KeyboardAvoidingView, SafeAreaView, Text, View,Platform, TextInput, Pre
 import {useContext, useState} from "react"
 import styles from "../libs/styles";
 import Form from "../components/form";
-import AuthContext from "../../services/authContext";
+import AuthContext from "../libs/constants";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../services/Firebase.config";
+import { auth } from "../../Firebase.config"
+import { ModalComponent } from "../components/modal";
 const Login = ({navigation}) => {
         const [email, setEmail] = useState<String>("");
         const [password, setPassword] = useState<String>("");
@@ -15,18 +16,20 @@ const Login = ({navigation}) => {
     const handleLogin = async() => {
       setLoading(true);
       setSuccess(false);
+      setError("");
       try {
         const response = await signInWithEmailAndPassword(auth,email, password);
         setSuccess(true);
-         signIn(response.user.uid);
+
+        signIn(response.user.uid);
       } catch (err) {
         setSuccess(false);
-        setError("An error occured")
-        err.code === "auth/invalid-credential" && setError("Incorrect password")
-        console.log(error)
+        (err.code === "auth/invalid-email" || "auth/invalid-credential") && setError("Incorrect password or email");
+        err.code === "auth/missing-password" && setError("Password must be provided")
+        
+        console.log(err.code)
       }
       setLoading(false)
-       
     };
   return (
     <SafeAreaView style={styles.container}>
@@ -38,14 +41,20 @@ const Login = ({navigation}) => {
         setPassword={setPassword}/>
       
       <View style={styles.box}>
+
+          {error && <Text style={styles.error}>{error}</Text>}
+ 
         <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={styles.textB}>Login</Text>
         </Pressable>
         <Text style={styles.text1}>Don't have account yet? </Text>
-        <Pressable style={styles.button1} onPress={()=>navigation.navigate("signup")}>
+        <Pressable 
+          style={styles.button_sec} 
+          onPress={()=>navigation.navigate("signup")}>
           <Text style={styles.text2}>Sign Up</Text>
         </Pressable>
       </View>
+      <ModalComponent loading={loading} setLoading={setLoading}/>
     </SafeAreaView>
   );
 };

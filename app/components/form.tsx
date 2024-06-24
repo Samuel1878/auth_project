@@ -1,7 +1,7 @@
 import { memo, useEffect, useState } from "react"
 import { KeyboardAvoidingView, Platform, TextInput ,Text, View} from "react-native";
 import styles from "../libs/styles";
-import { REGEX_MAIL, REGEX_PWD } from "../libs/data";
+import { REGEX_MAIL, REGEX_PWD } from "../libs/constants";
 
 const Form = ({email, setEmail, password, setPassword }) => {
     const [validPwd, setValidPwd] = useState<boolean>(false);
@@ -14,7 +14,7 @@ const Form = ({email, setEmail, password, setPassword }) => {
       }
       email && REGEX_MAIL.test(email)
         ?setError("")
-        :setError("Email syntax is invalid")
+        :setError("Invalid syntax!")
     },[email]);
     useEffect(()=>{
       if(!password) {
@@ -38,7 +38,7 @@ const Form = ({email, setEmail, password, setPassword }) => {
                 style={styles.inputs}
                 placeholderTextColor={"#515B5E"}
                 />
-            <Text style={styles.warn}>{error}</Text>
+            <Text style={styles.warn_1}>{error}</Text>
         </View>
         <TextInput
           value={password}
@@ -48,7 +48,7 @@ const Form = ({email, setEmail, password, setPassword }) => {
           style={styles.inputs}
           placeholderTextColor={"#515B5E"}
         />
-         { !validPwd?<Text style={styles.passwordWarn}>Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long. </Text>:null}
+         { !validPwd?<Text style={styles.warn_2}>Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long!</Text>:null}
       </KeyboardAvoidingView>
         
     )

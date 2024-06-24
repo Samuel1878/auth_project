@@ -17,9 +17,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "80%",
     marginVertical:10,
-    position:"relative",
+    position:"relative",  
 
-    
   },
   inputBox:{
     width: "100%",
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginVertical: 10,
   },
-  button1: {
+  button_sec: {
     padding: 15,
     borderRadius: 10,
     backgroundColor: "#515B5E",
@@ -54,13 +53,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 10,
   },
+  ///COMMON TEXT 
   text1: {
+
     fontSize: 14,
     color: "#fff",
     fontWeight: "300",
     textAlign: "center",
   },
   text2: {
+
     fontSize: 18,
     color: "#fefefe",
     fontWeight: "400",
@@ -70,6 +72,7 @@ const styles = StyleSheet.create({
     color: "#f1f1f1",
     fontWeight: "500",
   },
+  ///COLORED TEXT
   textB: {
     fontSize: 18,
     color: "#101010",
@@ -78,9 +81,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 19,
     color: "#85fcad",
-    fontWeight: "500",
+    fontWeight: "400",
   },
-  warn: {
+  warn_1: {
     fontSize: 11,
     color: "#fefefe",
     fontWeight: "200",
@@ -88,18 +91,35 @@ const styles = StyleSheet.create({
     bottom:"-15%",
     position:"absolute"
   },
-  error: {
-    fontSize: 14,
-    color: "red",
-    fontWeight: "200",
-  },
-  passwordWarn: {
-    fontSize: 8,
+  warn_2: {
+    fontSize: 9,
     color: "#f9f9f9",
     fontWeight: "200",
     textAlign:"center",
     position:"absolute",
     bottom:"-20%",
+  },
+  error: {
+    fontSize: 15,
+    color: "red",
+    fontWeight: "200",
+    textAlign:"center",
+    marginVertical:5
+  },
+
+  ///MODAL
+  modalContainer:{
+    flex:1,
+    justifyContent:"center",
+    alignItems:"center"
+  },
+  modal:{
+    backgroundColor:"#515B5E",
+    borderRadius: 10,
+    padding: 10,
+
   }
+
+  
 });
 export default styles;
