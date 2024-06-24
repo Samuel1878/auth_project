@@ -1,16 +1,18 @@
 import { KeyboardAvoidingView, Pressable, SafeAreaView, Text, TextInput, View } from "react-native";
-import {useEffect, useState} from "react"
+import {useContext, useEffect, useState} from "react"
 import styles from "../libs/styles";
 import Form from "../components/form";
 import { REGEX_MAIL, REGEX_PWD } from "../libs/data";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../services/Firebase.config";
+import AuthContext from "../../services/authContext";
 const Signup = ({navigation}) => {
     const [email, setEmail] = useState<String>("");
     const [password, setPassword] = useState<String>("");
     const [success, setSuccess] = useState<Boolean>(false);
     const [loading, setLoading] = useState<Boolean>(false);
     const [error, setError] = useState<String>("");
+    const {signIn} = useContext(AuthContext);
 
     const goToLogin = () => navigation.navigate("login");
     const handleSubmit = async() => {
@@ -20,8 +22,7 @@ const Signup = ({navigation}) => {
       // REGEX_MAIL.test(email) && REGEX_PWD.test(password) 
       try{
         const response = await createUserWithEmailAndPassword(auth, email, password);
-        console.log(response);
-        
+        signIn(response.user.uid)
       } catch (err:any) {
           setSuccess(false);
           setError("Error with sign up attempt")

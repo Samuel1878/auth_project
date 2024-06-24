@@ -51,7 +51,7 @@ const Auth = ({children}) => {
             dispatch({type:"SIGN_OUT"});
             SecureStore.deleteItemAsync("userId");
         },
-        userID: state.userID
+        userId: state.userID
     }));
     return(
         <AuthContext.Provider value={authContext}>
