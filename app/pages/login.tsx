@@ -24,9 +24,8 @@ const Login = ({navigation}) => {
         signIn(response.user.uid);
       } catch (err) {
         setSuccess(false);
-        (err.code === "auth/invalid-email" || "auth/invalid-credential") && setError("Incorrect password or email");
+        (err.code === "auth/invalid-email" || "auth/invalid-credential" || "auth/missin-email") && setError("Incorrect password or email");
         err.code === "auth/missing-password" && setError("Password must be provided")
-        
         console.log(err.code)
       }
       setLoading(false)
@@ -41,7 +40,6 @@ const Login = ({navigation}) => {
         setPassword={setPassword}/>
       
       <View style={styles.buttonContainer}>
-
         <Text style={styles.error}>{error}</Text>
         <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={styles.textB}>Login</Text>

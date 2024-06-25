@@ -3,12 +3,26 @@
     "version": ">= 10.0.2"
   },
   "build": {
+     "development-simulator": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      }
+    },
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+       "ios": {
+        "simulator": true
+      }
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "android":{
+        "buildType":"apk",
+        "gradleCommand": ":app:assembleRelease"
+      }
     },
     "production": {}
   },

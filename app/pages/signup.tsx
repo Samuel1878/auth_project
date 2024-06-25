@@ -26,6 +26,7 @@ const Signup = ({navigation}) => {
       } catch (err:any) {
           (err.code === 'auth/email-already-in-use') && setError('email address is already in use!');
           (err.code === 'auth/invalid-email')&& setError('Email address is invalid!');
+           (err.code === "auth/missing-email") && setError("Provide an email address");
           (err.code === "auth/missing-password") && setError("Password must be provided");
           (err.code === "auth/weak-password") && setError("Provide a strong password")
              console.log(err.code)

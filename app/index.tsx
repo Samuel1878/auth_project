@@ -54,8 +54,6 @@ const LayOut = () => {
         restoreToken();
 
     },[]);
-    console.log(state.userId)
-
     const authContext = useMemo(()=> ({
         signIn:async (userId) => {
             await SecureStore.setItemAsync("userId", userId);

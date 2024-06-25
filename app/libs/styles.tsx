@@ -15,13 +15,11 @@ const styles = StyleSheet.create({
   box: {
     flex:2.5,
     display: "flex",
-    justifyContent: "center",
-
-    width: "80%",
+    justifyContent: "start",
+    width: "84%",
     marginVertical:10,
     position:"relative", 
-
-
+    paddingVertical:50,
   },
   inputBox:{
     width: "100%",
@@ -52,7 +50,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex:1,
-    width:"84%",
+    width:"86%",
     justifyContent:"flex-end",
 
   },
