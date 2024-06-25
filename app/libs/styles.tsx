@@ -13,17 +13,20 @@ const styles = StyleSheet.create({
     color: "#85FCAD",
   },
   box: {
+    flex:2.5,
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
+
     width: "80%",
     marginVertical:10,
-    position:"relative",  
+    position:"relative", 
+
 
   },
   inputBox:{
     width: "100%",
     position:"relative",
-    marginVertical:10,
+    marginVertical:6,
   },
   inputs: {
     width: "100%",
@@ -32,12 +35,31 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     marginVertical: 10,
     fontSize:18,
-    color:"#f4f4f4"
+    color:"#f9f9f9",
+  },
+  label: {
+    fontSize: 10,
+    color: "#fefefe",
+    fontWeight: "200",
+    textAlign:"center",
+    bottom:"-28%",
+    position:"absolute",
+  },
+  icons:{
+    position:'absolute',
+    right:30,
+    top:"30%"
+  },
+  buttonContainer: {
+    flex:1,
+    width:"84%",
+    justifyContent:"flex-end",
+
   },
   button: {
     padding: 15,
     width: "100%",
-    borderRadius: 10,
+    borderRadius: 12,
     backgroundColor: "#85fcad",
     display: "flex",
     alignItems: "center",
@@ -53,6 +75,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 10,
   },
+
   ///COMMON TEXT 
   text1: {
 
@@ -83,22 +106,8 @@ const styles = StyleSheet.create({
     color: "#85fcad",
     fontWeight: "400",
   },
-  warn_1: {
-    fontSize: 11,
-    color: "#fefefe",
-    fontWeight: "200",
-    textAlign:"center",
-    bottom:"-15%",
-    position:"absolute"
-  },
-  warn_2: {
-    fontSize: 9,
-    color: "#f9f9f9",
-    fontWeight: "200",
-    textAlign:"center",
-    position:"absolute",
-    bottom:"-20%",
-  },
+
+ 
   error: {
     fontSize: 15,
     color: "red",

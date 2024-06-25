@@ -28,9 +28,17 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/fonts/LexendExa.ttf"]
+          "fonts": [
+            "./assets/fonts/LexendExa.ttf"
+          ]
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "238111ce-6709-4c66-bdc5-cd9f712e63ed"
+      }
+    },
+    "owner": "samuel_chost"
   }
 }

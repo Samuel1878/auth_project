@@ -1,11 +1,15 @@
 import { memo, useEffect, useState } from "react"
-import { KeyboardAvoidingView, Platform, TextInput ,Text, View} from "react-native";
+import { KeyboardAvoidingView, Platform, TextInput ,Text, View, TouchableOpacity} from "react-native";
 import styles from "../libs/styles";
 import { REGEX_MAIL, REGEX_PWD } from "../libs/constants";
+import { AntDesign,Ionicons,MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Form = ({email, setEmail, password, setPassword }) => {
     const [validPwd, setValidPwd] = useState<boolean>(false);
     const [error, setError] = useState<String>("");
+    const [showPassword, setShowPassword] = useState<boolean>(false);
+
+    const togglePassword = () => setShowPassword(!showPassword);
     
     useEffect(()=>{
       if(!email){
@@ -38,17 +42,36 @@ const Form = ({email, setEmail, password, setPassword }) => {
                 style={styles.inputs}
                 placeholderTextColor={"#515B5E"}
                 />
-            <Text style={styles.warn_1}>{error}</Text>
+            <Text style={[styles.label,{bottom:"-12%"}]}>{error}</Text>
+            <View style={styles.icons}>
+                <MaterialCommunityIcons name="email-variant" size={24} color="#85fcad" />
+            </View>
         </View>
-        <TextInput
-          value={password}
-          placeholder="password"
-          textContentType="password"
-          onChangeText={(e) => setPassword(e)}
-          style={styles.inputs}
-          placeholderTextColor={"#515B5E"}
-        />
-         { !validPwd?<Text style={styles.warn_2}>Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long!</Text>:null}
+        <View style={styles.inputBox}>
+
+            <TextInput
+                value={password}
+                placeholder="password"
+                textContentType="password"
+                onChangeText={(e) => setPassword(e)}
+                style={styles.inputs}
+                placeholderTextColor={"#515B5E"}
+                secureTextEntry={!showPassword}
+                />
+            { !validPwd 
+            ?
+               
+                <Text style={styles.label}><AntDesign name="warning" size={12} color="red"/>  Password must contain one digit, one lowercase and uppercase letter, one special character, no space, and 8-16 characters!
+                </Text>
+            :null}
+            <TouchableOpacity onPress={togglePassword} style={styles.icons}>
+                <Ionicons name={showPassword?"eye-sharp":"eye-off-sharp"} size={24} color="#85fcad" />
+
+            </TouchableOpacity>
+          
+
+        </View>
+       
       </KeyboardAvoidingView>
         
     )

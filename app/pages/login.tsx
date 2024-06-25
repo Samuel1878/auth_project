@@ -40,10 +40,9 @@ const Login = ({navigation}) => {
         password={password}
         setPassword={setPassword}/>
       
-      <View style={styles.box}>
+      <View style={styles.buttonContainer}>
 
-          {error && <Text style={styles.error}>{error}</Text>}
- 
+        <Text style={styles.error}>{error}</Text>
         <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={styles.textB}>Login</Text>
         </Pressable>

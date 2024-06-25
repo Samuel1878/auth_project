@@ -11,30 +11,24 @@ import { ModalComponent } from "../components/modal";
 const Signup = ({navigation}) => {
     const [email, setEmail] = useState<String>("");
     const [password, setPassword] = useState<String>("");
-    const [success, setSuccess] = useState<Boolean>(false);
     const [loading, setLoading] = useState<Boolean>(false);
     const [error, setError] = useState<String>("");
     const {signIn} = useContext(AuthContext);
-    // const [visible, setVisible] = useState<boolean>(false);
 
     const goToLogin = () => navigation.navigate("login");
     const handleSubmit = async() => {
       setLoading(true);
       setError("");
-      setSuccess(false);
-      // REGEX_MAIL.test(email) && REGEX_PWD.test(password) 
       try{
         const response = await createUserWithEmailAndPassword(auth, email, password);
-        setSuccess(true);
         signIn(response.user.uid)
-        // navigation.navigate("home")
+
       } catch (err:any) {
-          setSuccess(false);
           (err.code === 'auth/email-already-in-use') && setError('email address is already in use!');
           (err.code === 'auth/invalid-email')&& setError('Email address is invalid!');
-          (err.code === "auth/missing-password") && setError("Provided a strong password")
+          (err.code === "auth/missing-password") && setError("Password must be provided");
+          (err.code === "auth/weak-password") && setError("Provide a strong password")
              console.log(err.code)
-  
       }
    
       setLoading(false)
@@ -49,10 +43,8 @@ const Signup = ({navigation}) => {
         password={password}
         setPassword={setPassword}/>
 
-      <View style={styles.box}>
-        {
-          error && (<Text style={styles.error}>{error}</Text>)
-        }
+      <View style={styles.buttonContainer}>
+       <Text style={styles.error}>{error}</Text>
         <Pressable style={styles.button} onPress={handleSubmit}>
           <Text style={styles.textB}>Sign Up</Text>
         </Pressable>
