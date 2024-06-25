@@ -15,7 +15,6 @@ const Signup = ({navigation}) => {
     const [error, setError] = useState<String>("");
     const {signIn} = useContext(AuthContext);
 
-    const goToLogin = () => navigation.navigate("login");
     const handleSubmit = async() => {
       setLoading(true);
       setError("");
@@ -26,12 +25,11 @@ const Signup = ({navigation}) => {
       } catch (err:any) {
           (err.code === 'auth/email-already-in-use') && setError('email address is already in use!');
           (err.code === 'auth/invalid-email')&& setError('Email address is invalid!');
-           (err.code === "auth/missing-email") && setError("Provide an email address");
+          (err.code === "auth/missing-email") && setError("Provide an email address");
           (err.code === "auth/missing-password") && setError("Password must be provided");
           (err.code === "auth/weak-password") && setError("Provide a strong password")
-             console.log(err.code)
+            //  console.log(err.code)
       }
-   
       setLoading(false)
     };
   return (
@@ -45,13 +43,17 @@ const Signup = ({navigation}) => {
         setPassword={setPassword}/>
 
       <View style={styles.buttonContainer}>
-       <Text style={styles.error}>{error}</Text>
-        <Pressable style={styles.button} onPress={handleSubmit}>
+        <Text style={styles.error}>{error}</Text>
+        <Pressable 
+          style={styles.button} 
+          onPress={handleSubmit} 
+          style={[styles.button,{opacity:!email && !password?.8:1}]} 
+          disabled={!email && !password}>
           <Text style={styles.textB}>Sign Up</Text>
         </Pressable>
         <Text style={styles.text1}>Already have an account? </Text>
         <Pressable style={styles.button_sec} 
-          onPress={goToLogin}>
+          onPress={()=>navigation.navigate("login")}>
           <Text style={styles.text2}>Login</Text>
         </Pressable>
       </View>

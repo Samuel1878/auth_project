@@ -1,9 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {
-    getAuth,
-  initializeAuth,
-  getReactNativePersistence,
-} from "firebase/auth";
+import { getAuth, initializeAuth, getReactNativePersistence} from "firebase/auth";
 import SecureStorage from "expo-secure-store";
 
 const firebaseConfig = {

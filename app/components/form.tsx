@@ -8,9 +8,7 @@ const Form = ({email, setEmail, password, setPassword }) => {
     const [validPwd, setValidPwd] = useState<boolean>(false);
     const [error, setError] = useState<String>("");
     const [showPassword, setShowPassword] = useState<boolean>(false);
-
-    const togglePassword = () => setShowPassword(!showPassword);
-    
+ 
     useEffect(()=>{
       if(!email){
         setError("")
@@ -28,7 +26,7 @@ const Form = ({email, setEmail, password, setPassword }) => {
       setValidPwd(REGEX_PWD.test(password))
     },[password])
     return(
-        <KeyboardAvoidingView
+    <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.box}
       >
@@ -58,21 +56,14 @@ const Form = ({email, setEmail, password, setPassword }) => {
                 placeholderTextColor={"#515B5E"}
                 secureTextEntry={!showPassword}
                 />
-            { !validPwd 
-            ?
-               
+            { !validPwd ?
                 <Text style={styles.label}><AntDesign name="warning" size={12} color="red"/>  Password must contain one digit, one lowercase and uppercase letter, one special character, no space, and 8-16 characters!
-                </Text>
-            :null}
-            <TouchableOpacity onPress={togglePassword} style={styles.icons}>
+                </Text> : <></>}
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.icons}>
                 <Ionicons name={showPassword?"eye-sharp":"eye-off-sharp"} size={24} color="#85fcad" />
-
             </TouchableOpacity>
-          
-
         </View>
-       
-      </KeyboardAvoidingView>
+    </KeyboardAvoidingView>
         
     )
 }

@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from "react-native";
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -52,7 +53,6 @@ const styles = StyleSheet.create({
     flex:1,
     width:"86%",
     justifyContent:"flex-end",
-
   },
   button: {
     padding: 15,
@@ -73,17 +73,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 10,
   },
-
   ///COMMON TEXT 
   text1: {
-
     fontSize: 14,
     color: "#fff",
     fontWeight: "300",
     textAlign: "center",
   },
   text2: {
-
     fontSize: 18,
     color: "#fefefe",
     fontWeight: "400",
@@ -104,14 +101,12 @@ const styles = StyleSheet.create({
     color: "#85fcad",
     fontWeight: "400",
   },
-
- 
   error: {
     fontSize: 15,
     color: "red",
     fontWeight: "200",
     textAlign:"center",
-    marginVertical:5
+    marginVertical:5,
   },
 
   ///MODAL
@@ -124,9 +119,6 @@ const styles = StyleSheet.create({
     backgroundColor:"#515B5E",
     borderRadius: 10,
     padding: 10,
-
   }
-
-  
 });
 export default styles;

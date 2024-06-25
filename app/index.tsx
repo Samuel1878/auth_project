@@ -7,6 +7,7 @@ import Login from './pages/login';
 import Signup from './pages/signup';
 import AuthContext from '../app/libs/constants';
 import { ActivityIndicator } from 'react-native';
+
 interface authObject {
   loading:boolean,
   isSignOut:boolean,
@@ -41,29 +42,29 @@ const LayOut = () => {
                 };
         }
     },initialValue);
+    const authContext = useMemo(()=> ({
+      signIn:async (userId) => {
+          await SecureStore.setItemAsync("userId", userId);
+          dispatch({type:"SIGN_IN", token:userId});
+      },
+      signOut: () => {
+          dispatch({type:"SIGN_OUT"});
+          SecureStore.deleteItemAsync("userId");
+      }
+    }),[]);
     useEffect(()=>{
         const restoreToken = async() => {
             let userId;
             try {
                 userId = await SecureStore.getItemAsync("userId");
             } catch (err) {
-                console.error("Restoring token failed" + err.message)
+                console.log("Restoring token failed" + err.message)
             }
             dispatch({type:"RESTORE_TOKEN", token:userId});
         };
         restoreToken();
-
     },[]);
-    const authContext = useMemo(()=> ({
-        signIn:async (userId) => {
-            await SecureStore.setItemAsync("userId", userId);
-            dispatch({type:"SIGN_IN", token:userId});
-        },
-        signOut: () => {
-            dispatch({type:"SIGN_OUT"});
-            SecureStore.deleteItemAsync("userId");
-        }
-    }),[]);
+
     if(state.loading){
       return <ActivityIndicator size="large" color="#85fcad" />
     }
@@ -72,8 +73,15 @@ const LayOut = () => {
         <NavigationContainer>
         <Stack.Navigator initialRouteName="home">
           {
-            state.userId == null ? 
-            (<>
+            state.userId ? 
+              (
+                 <Stack.Screen
+              name="home"
+              component={Home}
+              options={{ headerShown: false }}
+              />
+              ):
+              (<>
                 <Stack.Screen
                   name="login"
                   component={Login}
@@ -85,14 +93,6 @@ const LayOut = () => {
                   options={{ headerShown: false }}
                 />
               </>)
-              : (
-                 <Stack.Screen
-              name="home"
-              component={Home}
-              options={{ headerShown: false }}
-              />
-              )
-              
           }
         </Stack.Navigator>
       </NavigationContainer>

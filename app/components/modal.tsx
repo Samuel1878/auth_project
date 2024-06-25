@@ -2,7 +2,6 @@ import { View,Text,Modal, ActivityIndicator} from "react-native";
 import styles from "../libs/styles";
 import {BlurView} from "expo-blur";
 
-
 export const ModalComponent = ({loading = false, setLoading}) => {
     return (
         <Modal
