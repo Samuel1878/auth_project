@@ -46,7 +46,6 @@ const Form = ({email, setEmail, password, setPassword }) => {
             </View>
         </View>
         <View style={styles.inputBox}>
-
             <TextInput
                 value={password}
                 placeholder="password"
