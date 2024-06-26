@@ -7,6 +7,7 @@ Download and install Android Studio for Android Emulator and Xcode for IOS Simul
 For the real device development environment setup, install Expo Go app from the app or goole play store.
 Then, run "npm i" in terminal to install node modules into the project. 
 
+visit expo docs for more details "https://docs.expo.dev/get-started/set-up-your-environment/"
 <h4>Start the project</h4>
 
 To start running the project locally, the following scripts are availiable. 
