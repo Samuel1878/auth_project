@@ -11,16 +11,17 @@ Then, run "npm i" in terminal to install node modules into the project.
 
 To start running the project locally, the following scripts are availiable. 
 
-"npm run start"
+"npm run start" <br>
 Or 
+<br>
 "npx expo start"
 
-<h2>After starting project, you can switch development-build and Expo Go by pressing "s" in terminal</h2>
+<h3>After starting project, you can switch development-build and Expo Go by pressing "s" in terminal</h3>
 
-#IOS
+#IOS <br>
 "npm run ios"
 
-#Andriod
+#Andriod <br>
 "npm run android
 
 
